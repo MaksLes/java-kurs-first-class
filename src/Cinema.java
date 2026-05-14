@@ -68,7 +68,7 @@ public class Cinema {
         System.out.println("Podaj numer kolumny (0-4): ");
         int c = sc.nextInt();
 
-        if (r < 0 || r >= sala.length || c < 0 || c >+ sala[0].length){
+        if (r < 0 || r >= sala.length || c < 0 || c >= sala[0].length){
             System.out.println("Błędne współrzędne!");
             return;
         }
