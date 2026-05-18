@@ -13,6 +13,7 @@ public class Main {
         products.add(new FoodProduct("Mąka Basia", 4.50, "Pieczywo",
                 LocalDate.of(2025, 6, 1)));
         products.add(new Product("Zeszyt A4", 11.99, "Artykuły biurowe"));
+        products.add(new Product("Zestaw płyt CD/DVD", 47.99, "Artykuły biurowe"));
 
         System.out.println("=== Lista Produktów ===\n");
 
