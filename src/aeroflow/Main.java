@@ -54,4 +54,20 @@ public class Main {
         //Oczekiwana kolejność FR812(5) -> W62137(5) -> LOT221(3) -> LH104(2) -> BA007(1)
         control.processTakeoffs();
     }
+
+    /*
+    Pytanie 1.1
+    keySet() + get() wykonuje dwa przejścia przez strukturę na element: raz po klucz raz po wartość (ponowne obliczenie
+    hashCode + przeszukanie łańcucha equals).entrySet() zwraca pary Map.Entry<K, V> w jednym przebiegu.
+
+    Pytanie 1.2
+    Dwa kluczowe zagrożenia:
+    1. Race Condition - równoczesny put() dwóch wątków do tego samego kubelka nadpisuje dane bez wyjątku, licznik sesji
+    staje się niewiarygodny
+
+    2. Nieskończona pętla podczas rehashingu - równoczesny resize może wygenerować cykl w linked liście kubełka
+    -> wątek blokuje CPU na 100%
+
+    Rozwiązanie: ConcurrentHashMap z java.util.concurrent - segmentuje strukturę wewnętrznie, różne wątki piszą do różnych
+    segmentów bez globalnej blokady. Atomowe zliczanie: sessionMap.merge(userId, 1, Integer::sum).     */
 }
