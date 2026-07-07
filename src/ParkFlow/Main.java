@@ -9,10 +9,15 @@ public class Main {
         Function<String, String> plateFormatterLambda =
                 rawPlate -> rawPlate.replace(" ", "").toUpperCase();
 
-       Function<String, String> plateFormatterMethodRef = PlateUtil::normalizePlate;
+        //Wariant Method Reference - typ: referencja instancyjna na typie (unbound)
+        //Gdyby String posiadał metodę normalizePlate(), poprawna referencja wyglądałaby tak:
+        //  Function<String, String> plateFormatterMethodRef = String::normalizePlate;
+        //JVM automatycznie rozpoznaje, że parametr String przekazany do .apply() jest obiektem
+        //wywołującym - analogicznie do String::toUpperCase poniżej:
+        Function<String, String> plateFormatterMethodRef = String::toUpperCase;
 
         System.out.println("Lambda: " + plateFormatterLambda.apply("ab 12 cd"));
-        System.out.println("Method Ref: " + plateFormatterMethodRef.apply("ab 12 cd"));
+        System.out.println("Method Ref (unbound): " + plateFormatterMethodRef.apply("ab 12 cd"));
 
         //Część 3 Predykaty
 
